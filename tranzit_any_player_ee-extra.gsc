@@ -45,20 +45,6 @@ safety_light_power_on_listen()
 	}
 }
 
-safety_light_power_off_solo()
-{
-		wait 0.05;
-		if ( getPlayers().size == 1 && level.sq_progress[ "rich" ][ "C_screecher_light" ] == 1 )
-			level.sq_progress[ "rich" ][ "C_screecher_light" ] += 2;
-}
-
-safety_light_power_on_solo()
-{
-		wait 0.05;
-		if ( getPlayers().size == 1 && level.sq_progress[ "rich" ][ "C_screecher_light" ] == 1 )
-			level.sq_progress[ "rich" ][ "C_screecher_light" ]++;
-}
-
 custom_maxis_sidequest_b()
 {
 	level endon( "power_on" );
@@ -95,4 +81,18 @@ custom_get_how_many_progressed_from( story, a, b )
 		return 2;
 
 	return 0;
+}
+
+safety_light_power_off_solo()
+{
+		wait 0.05;
+		if ( getPlayers().size == 1 && level.sq_progress[ "rich" ][ "C_screecher_light" ] == 1 )
+			level.sq_progress[ "rich" ][ "C_screecher_light" ] += 2;
+}
+
+safety_light_power_on_solo()
+{
+		wait 0.05;
+		if ( getPlayers().size == 1 && level.sq_progress[ "rich" ][ "C_screecher_light" ] == 1 )
+			level.sq_progress[ "rich" ][ "C_screecher_light" ]++;
 }
