@@ -1,28 +1,29 @@
-#include maps/mp/zm_transit_utility;
-#include maps/mp/zm_transit_sq;
-#include maps/mp/zombies/_zm_sidequests;
-#include maps/mp/zombies/_zm_utility;
-#include maps/mp/_utility;
-#include common_scripts/utility;
+#include common_scripts\utility;
+#include maps\mp\_utility;
+#include maps\mp\zm_transit_sq;
+#include maps\mp\zm_transit_utility;
+#include maps\mp\zombies\_zm_sidequests;
+#include maps\mp\zombies\_zm_utility;
 
 main()
 {
-	replaceFunc( ::get_how_many_progressed_from, ::custom_get_how_many_progressed_from );
 	replaceFunc( ::maxis_sidequest_b, ::custom_maxis_sidequest_b );
+	replaceFunc( ::get_how_many_progressed_from, ::custom_get_how_many_progressed_from );
 }
 
 init()
-{}
-
-custom_get_how_many_progressed_from( story, a, b )
 {
-	n_players = getPlayers().size;
-	if ( ( isdefined( level.sq_progress[story][a] ) && !isdefined( level.sq_progress[story][b] ) || !isdefined( level.sq_progress[story][a] ) && isdefined( level.sq_progress[story][b] ) ) && n_players > 1 )
-		return 1;
-	else if ( isdefined( level.sq_progress[story][a] ) && ( isdefined( level.sq_progress[story][b] ) || n_players == 1 ) )
-		return 2;
+	thread onPlayerConnect();
+}
 
-	return 0;
+onPlayerConnect()
+{
+	for (;;)
+	{
+		level waittill( "connected", player );
+
+		player iPrintLn( "^2Any Player EE Mod ^5TranZit" );
+	}
 }
 
 custom_maxis_sidequest_b()
@@ -50,4 +51,15 @@ custom_maxis_sidequest_b()
 	player[0] setclientfield( "sq_tower_sparks", 1 );
 	player[0] setclientfield( "screecher_maxis_lights", 1 );
 	level thread maxis_sidequest_complete_check( "B_complete" );
+}
+
+custom_get_how_many_progressed_from( story, a, b )
+{
+	n_players = getPlayers();
+	if ( ( isdefined( level.sq_progress[story][a] ) && !isdefined( level.sq_progress[story][b] ) || !isdefined( level.sq_progress[story][a] ) && isdefined( level.sq_progress[story][b] ) ) && n_players > 1 )
+		return 1;
+	else if ( isdefined( level.sq_progress[story][a] ) && ( isdefined( level.sq_progress[story][b] ) || n_players == 1 ) )
+		return 2;
+
+	return 0;
 }
