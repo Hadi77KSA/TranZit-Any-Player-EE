@@ -11,6 +11,7 @@ main()
 init()
 {
 	thread onPlayerConnect();
+	level thread tranzit_richtofen_solo();
 }
 
 onPlayerConnect()
@@ -19,8 +20,38 @@ onPlayerConnect()
 	{
 		level waittill( "connected", player );
 
-		player iPrintLn( "^2Any Player EE Mod ^5TranZit" );
+		player iPrintLn( "^3Any Player EE Mod ^5TranZit" );
 	}
+}
+
+tranzit_richtofen_solo()
+{
+    level endon( "end_game" );
+    self endon( "disconnect" );
+    level thread screecher_light_on_sq_solo();
+
+    while( 1 )
+    {
+        level waittill( "safety_light_power_off" );
+        wait 0.05;
+        if ( getPlayers().size <= 1 && level.sq_progress[ "rich" ][ "C_screecher_light" ] == 1 )
+        {
+            level.sq_progress[ "rich" ][ "C_screecher_light" ] += 2;
+        }
+    }
+}
+
+screecher_light_on_sq_solo()
+{
+    while( 1 )
+    {
+        level waittill( "safety_light_power_on" );
+        wait 0.05;
+        if ( getPlayers().size <= 1 && level.sq_progress[ "rich" ][ "C_screecher_light" ] == 1 )
+        {
+            level.sq_progress[ "rich" ][ "C_screecher_light" ]++;
+        }
+    }
 }
 
 custom_maxis_sidequest_b()
