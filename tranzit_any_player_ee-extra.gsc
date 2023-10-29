@@ -74,7 +74,7 @@ custom_maxis_sidequest_b()
 
 custom_get_how_many_progressed_from( story, a, b )
 {
-	n_players = getPlayers();
+	n_players = getPlayers().size;
 	if ( ( isdefined( level.sq_progress[story][a] ) && !isdefined( level.sq_progress[story][b] ) || !isdefined( level.sq_progress[story][a] ) && isdefined( level.sq_progress[story][b] ) ) && n_players > 1 )
 		return 1;
 	else if ( isdefined( level.sq_progress[story][a] ) && ( isdefined( level.sq_progress[story][b] ) || n_players == 1 ) )
