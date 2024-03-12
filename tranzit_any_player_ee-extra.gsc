@@ -17,7 +17,7 @@ init()
 
 onPlayerConnect()
 {
-	for (;;)
+	while ( true )
 	{
 		level waittill( "connected", player );
 
@@ -31,7 +31,7 @@ safety_light_power_off_listen()
 	{
 		level waittill( "safety_light_power_off" );
 
-		thread safety_light_power_off_solo()
+		thread safety_light_power_off_solo();
 	}
 }
 
@@ -41,7 +41,7 @@ safety_light_power_on_listen()
 	{
 		level waittill( "safety_light_power_on" );
 
-		thread safety_light_power_on_solo()
+		thread safety_light_power_on_solo();
 	}
 }
 
