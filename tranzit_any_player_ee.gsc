@@ -15,7 +15,7 @@ init()
 
 onPlayerConnect()
 {
-	for (;;)
+	while ( true )
 	{
 		level waittill( "connected", player );
 
