@@ -20,9 +20,14 @@ onPlayerConnect()
 	while ( true )
 	{
 		level waittill( "connected", player );
-
-		player iPrintLn( "^3Any Player EE Mod ^5TranZit" );
+		player thread display_mod_message();
 	}
+}
+
+display_mod_message()
+{
+	flag_wait( "initial_players_connected" );
+	self iPrintLn( "^3Any Player EE Mod ^5TranZit" );
 }
 
 safety_light_power_off_listen()
