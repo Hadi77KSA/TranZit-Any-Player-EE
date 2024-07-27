@@ -17,7 +17,7 @@ init()
 
 onPlayerConnect()
 {
-	while ( true )
+	for (;;)
 	{
 		level waittill( "connected", player );
 		player thread display_mod_message();
@@ -26,26 +26,25 @@ onPlayerConnect()
 
 display_mod_message()
 {
+	self endon( "disconnect" );
 	flag_wait( "initial_players_connected" );
 	self iPrintLn( "^3Any Player EE Mod ^5TranZit" );
 }
 
 safety_light_power_off_listen()
 {
-	while ( true )
+	for (;;)
 	{
 		level waittill( "safety_light_power_off" );
-
 		thread safety_light_power_off_solo();
 	}
 }
 
 safety_light_power_on_listen()
 {
-	while ( true )
+	for (;;)
 	{
 		level waittill( "safety_light_power_on" );
-
 		thread safety_light_power_on_solo();
 	}
 }
@@ -80,6 +79,7 @@ custom_maxis_sidequest_b()
 custom_get_how_many_progressed_from( story, a, b )
 {
 	n_players = getPlayers().size;
+
 	if ( ( isdefined( level.sq_progress[story][a] ) && !isdefined( level.sq_progress[story][b] ) || !isdefined( level.sq_progress[story][a] ) && isdefined( level.sq_progress[story][b] ) ) && n_players > 1 )
 		return 1;
 	else if ( isdefined( level.sq_progress[story][a] ) && ( isdefined( level.sq_progress[story][b] ) || n_players == 1 ) )
@@ -91,6 +91,7 @@ custom_get_how_many_progressed_from( story, a, b )
 safety_light_power_off_solo()
 {
 		wait 0.05;
+
 		if ( getPlayers().size == 1 && level.sq_progress[ "rich" ][ "C_screecher_light" ] == 1 )
 			level.sq_progress[ "rich" ][ "C_screecher_light" ] += 2;
 }
@@ -98,6 +99,7 @@ safety_light_power_off_solo()
 safety_light_power_on_solo()
 {
 		wait 0.05;
+
 		if ( getPlayers().size == 1 && level.sq_progress[ "rich" ][ "C_screecher_light" ] == 1 )
 			level.sq_progress[ "rich" ][ "C_screecher_light" ]++;
 }
