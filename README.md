@@ -1,5 +1,7 @@
 # TranZit-Any-Player-EE
-https://github.com/Hadi77KSA/Plutonium-T6-Any-Player-EE-Scripts-For-Speedrunning#transit
+Any player EE mod
+
+https://github.com/Hadi77KSA/Plutonium-T6-Any-Player-EE-Scripts-For-Speedrunning#tranzit
 
 ## Additional
 ### Richtofen side
